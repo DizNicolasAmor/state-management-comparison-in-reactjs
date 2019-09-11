@@ -1,0 +1,22 @@
+.list__wrapper {
+    margin: auto;
+    width: 100vw;
+    max-width: 1280px;
+    min-width: 300px;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+.list__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.list__row.title {
+    background: #DCDCDC;
+}
+
+.list__row.body {
+    background: #FCFCFC
+}
