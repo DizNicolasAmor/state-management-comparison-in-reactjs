@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/list.css';
+import { observer } from 'mobx-react-lite';
 
 const ListHeader = () => (
 	<div className='list__row title'>
@@ -15,13 +16,13 @@ const Item = ({ person }) => (
 	</div>
 );
 
-const List = ({ filteredContacts }) => (
+const List = observer(({ filteredContacts }) => (
 	<div className='list__wrapper'>
 		<ListHeader />
 		{filteredContacts.map(person => (
 			<Item person={person} key={person._id} />
 		))}
 	</div>
-);
+));
 
 export default List;
