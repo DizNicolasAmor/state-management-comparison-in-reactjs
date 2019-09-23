@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ContactsContainer from './contacts/ContactsContainer';
+import { myStore } from './contacts/store';
 import * as serviceWorker from './serviceWorker';
 
 const root = document.getElementById('root');
 
-if (root) ReactDOM.render(<ContactsContainer />, root);
+if (root) ReactDOM.render(<ContactsContainer store={myStore} />, root);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

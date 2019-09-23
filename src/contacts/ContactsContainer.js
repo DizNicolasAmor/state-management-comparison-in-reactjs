@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import FilterBar from './components/FilterBar';
 import List from './components/List';
 import { getData } from './utils/contactsHelpers';
+import { observer } from 'mobx-react-lite';
 
-const ContactsContainer = () => {
-	const [myContacts, setMyContacts] = useState([]);
-	const [filteredContacts, setFilteredContacts] = useState([]);
-	const [searchTerm, setSearchTerm] = useState('');
+const ContactsContainer = observer(({ store }) => {
+	const {
+		myContacts,
+		setMyContacts,
+		filteredContacts,
+		setFilteredContacts,
+		searchTerm,
+		setSearchTerm
+	} = store;
 
 	const updatesearchTerm = value => setSearchTerm(value);
 	const filterContacts = () => {
@@ -14,7 +20,7 @@ const ContactsContainer = () => {
 			const newContacts = myContacts.filter(c =>
 				c.name.toLowerCase().includes(searchTerm.toLowerCase())
 			);
-			setFilteredContacts(newContacts);
+			return setFilteredContacts(newContacts);
 		}
 	};
 
@@ -22,7 +28,7 @@ const ContactsContainer = () => {
 		getData()
 			.then(setMyContacts)
 			.catch(console.error);
-	}, []);
+	}, []); /* eslint-disable-line */
 
 	useEffect(filterContacts, [myContacts, searchTerm]);
 
@@ -32,6 +38,6 @@ const ContactsContainer = () => {
 			<List filteredContacts={filteredContacts} />
 		</div>
 	);
-};
+});
 
 export default ContactsContainer;
