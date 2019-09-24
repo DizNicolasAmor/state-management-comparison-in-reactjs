@@ -1,16 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateSearchTermAction } from '../actions';
 
-const FilterBar = ({ updatesearchTerm }) => (
+const FilterBar = ({ updateSearchTermAction }) => (
 	<div>
 		<div>Search by your contact name:</div>
 		<input
 			placeholder='Name...'
 			type='text'
 			onChange={ev => {
-				updatesearchTerm(ev.target.value);
+				updateSearchTermAction(ev.target.value);
 			}}
 		/>
 	</div>
 );
 
-export default FilterBar;
+const mapDispatchToProps = dispatch => ({
+	updateSearchTermAction: str => dispatch(updateSearchTermAction(str))
+});
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(FilterBar);
