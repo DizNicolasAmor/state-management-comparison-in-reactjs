@@ -1,3 +1,5 @@
+#  state-management-comparison-in-reactjs
+
 ## About this project
 
 This is a simple react app. It is a list of contacts (name and phone) and the user can filter them by name.
